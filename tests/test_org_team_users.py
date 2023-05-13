@@ -40,7 +40,7 @@ test_data_team_not_found = [
 
 
 @pytest.mark.parametrize("token, org_name, team_name, user_data", test_data_users)
-def test_get_list_of_team_users(token, org_name, team_name, user_data):
+def test_add_user_to_team(token, org_name, team_name, user_data):
     # Arrange
     user_email = user_data["email"]
 
