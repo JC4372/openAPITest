@@ -36,7 +36,7 @@ test_data_display_name_missing = [(tokens.fullAccessUser3, {
 
 
 @pytest.mark.parametrize("token, old_name, new_name, user_data", test_data_users)
-def test_get_list_of_org_users(token, old_name, new_name, user_data):
+def test_update_display_name(token, old_name, new_name, user_data):
     # Act
     response = requests.patch(f'https://api.appcenter.ms/v0.1/user', headers={
         "accept": "application/json",
