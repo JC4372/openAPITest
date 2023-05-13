@@ -1,3 +1,5 @@
+# Método 4. POST /v0.1/orgs/{org_name}/teams/{team_name}/users
+
 import json
 import random
 import re
@@ -17,7 +19,7 @@ test_data_users = [
          "role": "collaborator"
      })]
 
-test_data_user_already_belong_the_team = [
+test_data_user_already_member = [
     (tokens.fullAccessUser1, "DevelopmentOrg", "BackendTeam", "adejesusvilla@unicesar.edu.co",
      {
          "error": {
@@ -55,7 +57,7 @@ def test_get_list_of_team_users(token, org_name, team_name, user_data):
     # Assert
     # verify status code
     assert response.status_code == 201
-    # verify that the json returns the user list
+    # verify that the json returns the user information
     assert resp_data == user_data
 
     # revert the changes made to ensure that the test is repeatable
@@ -68,7 +70,7 @@ def test_get_list_of_team_users(token, org_name, team_name, user_data):
     assert del_response.status_code == 204
 
 
-@pytest.mark.parametrize("token, org_name, team_name, user_email, test_data", test_data_user_already_belong_the_team)
+@pytest.mark.parametrize("token, org_name, team_name, user_email, test_data", test_data_user_already_member)
 def test_do_not_add_user_to_team_if_already_belongs(token, org_name, team_name, user_email, test_data):
     # Act
     response = requests.post(f'https://api.appcenter.ms/v0.1/orgs/{org_name}/teams/{team_name}/users', headers={
@@ -81,9 +83,9 @@ def test_do_not_add_user_to_team_if_already_belongs(token, org_name, team_name, 
     resp_data = json.loads(response.content)
 
     # Assert
-    # verify status code
+    # check status code
     assert response.status_code == 409
-    # verify that the json returns the user list
+    # check that the json returns a error message: "Validation error" (Conflict)
     assert resp_data == test_data
 
 

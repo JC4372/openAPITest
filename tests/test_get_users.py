@@ -1,3 +1,5 @@
+# Método 1. GET /v0.1/user
+
 import json
 import re
 

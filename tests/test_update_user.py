@@ -1,3 +1,5 @@
+# Método 3. PATCH /v0.1/user
+
 import json
 import random
 import string
