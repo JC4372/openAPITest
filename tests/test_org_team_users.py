@@ -71,7 +71,7 @@ def test_add_user_to_team(token, org_name, team_name, user_data):
 
 
 @pytest.mark.parametrize("token, org_name, team_name, user_email, test_data", test_data_user_already_member)
-def test_do_not_add_user_to_team_if_already_belongs(token, org_name, team_name, user_email, test_data):
+def test_do_not_add_user_to_team_if_is_member(token, org_name, team_name, user_email, test_data):
     # Act
     response = requests.post(f'https://api.appcenter.ms/v0.1/orgs/{org_name}/teams/{team_name}/users', headers={
         "accept": "application/json",
