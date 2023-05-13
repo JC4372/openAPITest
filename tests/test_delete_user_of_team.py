@@ -23,6 +23,15 @@ test_data_user_not_member = [
      }
      )]
 
+test_data_org_not_found = [
+    (tokens.fullAccessUser1, "BackendTeam", "adejesusvilla",
+     {
+         "message": r"Not found. Correlation ID: [a-f\d]{8}-(?:[a-f\d]{4}-){3}[a-f\d]{12}",
+         "statusCode": 404,
+         "code": "Not Found"
+     }
+     )]
+
 
 @pytest.mark.parametrize("token, org_name, team_name, user_email, user_name", test_data_delete_user_of_team)
 def test_remove_user_of_team(token, org_name, team_name, user_email, user_name):
@@ -50,10 +59,11 @@ def test_remove_user_of_team(token, org_name, team_name, user_email, user_name):
 @pytest.mark.parametrize("token, org_name, team_name, user_name, test_data", test_data_user_not_member)
 def test_do_not_delete_user_not_member(token, org_name, team_name, user_name, test_data):
     # Act
-    response = requests.delete(f'https://api.appcenter.ms/v0.1/orgs/{org_name}/teams/{team_name}/users/{user_name}', headers={
-        "accept": "application/json",
-        "X-API-Token": token
-    })
+    response = requests.delete(f'https://api.appcenter.ms/v0.1/orgs/{org_name}/teams/{team_name}/users/{user_name}',
+                               headers={
+                                   "accept": "application/json",
+                                   "X-API-Token": token
+                               })
     resp_data = json.loads(response.content)
 
     # Assert
@@ -62,3 +72,27 @@ def test_do_not_delete_user_not_member(token, org_name, team_name, user_name, te
     # check that the json returns a error message: "The user with the name "..." is not a member of the team
     # FrontTeam" (Conflict)
     assert resp_data == test_data
+
+
+@pytest.mark.parametrize("token, team_name, user_name, test_data", test_data_org_not_found)
+def test_do_not_add_user_to_team_no_created(token, team_name, user_name, test_data):
+    # Arrange
+    # regex expression
+    guid_regex = re.compile(test_data["message"], re.IGNORECASE)
+    org_name = 'RandomOrg_' + ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
+
+    # Act
+    response = requests.delete(f'https://api.appcenter.ms/v0.1/orgs/{org_name}/teams/{team_name}/users/{user_name}',
+                               headers={
+                                   "accept": "application/json",
+                                   "X-API-Token": token
+                               })
+    resp_data = json.loads(response.content)
+
+    # Assert
+    # check status code
+    assert response.status_code == 404
+    # check that the json contains the error code 404 Not Found
+    assert guid_regex.match(resp_data["message"])
+    assert resp_data["statusCode"] == test_data["statusCode"]
+    assert resp_data["code"] == test_data["code"]
