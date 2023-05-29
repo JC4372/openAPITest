@@ -1,0 +1,9 @@
+Los datos de prueba se extraen de una base de datos de MongoDB, la cual cuenta con 5 colecciones:
+* test_delete_user_of_team
+* test_get_org_users
+* test_get_users
+* test_patch_user
+* test_post_org_team_users
+
+Las cuales contiene los datos para cada una de las respectivas pruebas
+En esta carpeta se encuentran unos archivos .json, que contienen los datos que están contenidos en esas colecciones.

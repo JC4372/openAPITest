@@ -1,0 +1,86 @@
+[{
+  "_id": {
+    "$oid": "64742780e3d0d12fcfd61b60"
+  },
+  "test": "remove_user_of_team",
+  "url": "https://api.appcenter.ms/v0.1/orgs/{org_name}/teams/{team_name}/users/{user_name}",
+  "method": "delete",
+  "headers": {
+    "accept": "application/json",
+    "content-type": "application/json",
+    "X-API-Token": "71b74871295b07383fb2f40a20c45e1a3045ee44"
+  },
+  "parameters": {
+    "org_name": "DevelopmentOrg",
+    "team_name": "FrontTeam",
+    "user_name": "adejesusvilla"
+  },
+  "statusCode": 204,
+  "result": null,
+  "arrange": {
+    "url": "https://api.appcenter.ms/v0.1/orgs/{org_name}/teams/{team_name}/users",
+    "method": "post",
+    "headers": {
+      "accept": "application/json",
+      "content-type": "application/json",
+      "X-API-Token": "71b74871295b07383fb2f40a20c45e1a3045ee44"
+    },
+    "parameters": {
+      "org_name": "DevelopmentOrg",
+      "team_name": "FrontTeam"
+    },
+    "body": {
+      "user_email": "adejesusvilla@unicesar.edu.co"
+    },
+    "statusCode": 201
+  }
+},
+{
+  "_id": {
+    "$oid": "6474299be3d0d12fcfd61b66"
+  },
+  "test": "do_not_delete_user_not_member",
+  "url": "https://api.appcenter.ms/v0.1/orgs/{org_name}/teams/{team_name}/users/{user_name}",
+  "method": "delete",
+  "headers": {
+    "accept": "application/json",
+    "content-type": "application/json",
+    "X-API-Token": "71b74871295b07383fb2f40a20c45e1a3045ee44"
+  },
+  "parameters": {
+    "org_name": "DevelopmentOrg",
+    "team_name": "FrontTeam",
+    "user_name": "RandomUser_9841632461793"
+  },
+  "statusCode": 404,
+  "result": {
+    "error": {
+      "code": "NotFound",
+      "message": "The user with the name \"RandomUser_9841632461793\" is not a member of the team FrontTeam"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "647430f0e3d0d12fcfd61b76"
+  },
+  "test": "do_not_add_user_to_team_no_created",
+  "url": "https://api.appcenter.ms/v0.1/orgs/{org_name}/teams/{team_name}/users/{user_name}",
+  "method": "delete",
+  "headers": {
+    "accept": "application/json",
+    "content-type": "application/json",
+    "X-API-Token": "71b74871295b07383fb2f40a20c45e1a3045ee44"
+  },
+  "parameters": {
+    "org_name": "DevelopmentOrg",
+    "team_name": "FrontTeam",
+    "user_name": "adejesusvilla"
+  },
+  "statusCode": 404,
+  "result": {
+    "message": "Not found. Correlation ID: [a-f\\d]{8}-(?:[a-f\\d]{4}-){3}[a-f\\d]{12}",
+    "statusCode": 404,
+    "code": "Not Found"
+  }
+}]

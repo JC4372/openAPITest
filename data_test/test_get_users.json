@@ -1,0 +1,77 @@
+[{
+  "_id": {
+    "$oid": "6473d839e3d0d12fcfd61b10"
+  },
+  "test": "get_profile_date_of_user",
+  "url": "https://api.appcenter.ms/v0.1/user",
+  "headers": {
+    "accept": "application/json",
+    "X-API-Token": "71b74871295b07383fb2f40a20c45e1a3045ee44"
+  },
+  "statusCode": 200,
+  "result": {
+    "id": "2afb883f-48db-4c26-8248-a88bebf3ba38",
+    "display_name": "Jesus Camacho",
+    "email": "accms9587@outlook.com",
+    "name": "accms9587",
+    "avatar_url": null,
+    "can_change_password": false,
+    "created_at": "2023-05-09T21:07:38.069Z",
+    "origin": "appcenter"
+  }
+},
+{
+  "_id": {
+    "$oid": "6473d839e3d0d12fcfd61b11"
+  },
+  "test": "get_profile_date_of_user",
+  "url": "https://api.appcenter.ms/v0.1/user",
+  "headers": {
+    "accept": "application/json",
+    "X-API-Token": "de73d101f1f5a98791a8a711ed64e99e9f11a02d"
+  },
+  "statusCode": 200,
+  "result": {
+    "id": "6af46696-8390-458a-9b4b-04c108165d3a",
+    "display_name": "AGNER DE JESUS VILLA FABREGA",
+    "email": "adejesusvilla@unicesar.edu.co",
+    "name": "adejesusvilla",
+    "avatar_url": null,
+    "can_change_password": false,
+    "created_at": "2023-05-09T17:27:35.178Z",
+    "origin": "appcenter"
+  }
+},
+{
+  "_id": {
+    "$oid": "6473da64e3d0d12fcfd61b16"
+  },
+  "test": "do_not_return_profile_without_token",
+  "url": "https://api.appcenter.ms/v0.1/user",
+  "headers": {
+    "accept": "application/json"
+  },
+  "statusCode": 401,
+  "result": {
+    "message": "Missing valid authentication token. Correlation ID: [a-f\\d]{8}-(?:[a-f\\d]{4}-){3}[a-f\\d]{12}",
+    "statusCode": 401,
+    "code": "Unauthorized"
+  }
+},
+{
+  "_id": {
+    "$oid": "6473e68ce3d0d12fcfd61b1c"
+  },
+  "test": "do_not_return_profile_with_invalid_token",
+  "url": "https://api.appcenter.ms/v0.1/user",
+  "headers": {
+    "accept": "application/json",
+    "X-API-Token": "71b74871295b07383fb2f40a20c458a711ed64e99e9f11a02d"
+  },
+  "statusCode": 401,
+  "result": {
+    "message": "Unauthorized. Correlation ID: [a-f\\d]{8}-(?:[a-f\\d]{4}-){3}[a-f\\d]{12}",
+    "statusCode": 401,
+    "code": "Unauthorized"
+  }
+}]

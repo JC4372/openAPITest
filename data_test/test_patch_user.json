@@ -1,0 +1,73 @@
+[{
+  "_id": {
+    "$oid": "64740c5de3d0d12fcfd61b51"
+  },
+  "test": "update_display_name",
+  "url": "https://api.appcenter.ms/v0.1/user",
+  "method": "patch",
+  "headers": {
+    "accept": "application/json",
+    "content-type": "application/json",
+    "X-API-Token": "b12ca08737df843fee725204a28154c57da96fb6"
+  },
+  "body": {
+    "display_name": "J CAMACHO"
+  },
+  "statusCode": 200,
+  "result": {
+    "id": "4e24f0bd-d04e-4fa6-9375-900f1e9c5413",
+    "display_name": "J CAMACHO",
+    "email": "jmanuelcamacho@unicesar.edu.co",
+    "name": "jmanuelcamacho",
+    "avatar_url": null,
+    "can_change_password": false,
+    "origin": "appcenter"
+  },
+  "reset_data": {
+    "display_name": "JESUS MANUEL CAMACHO SARMIENTO"
+  }
+},
+{
+  "_id": {
+    "$oid": "64740c5de3d0d12fcfd61b52"
+  },
+  "test": "do_not_update_display_name_when_value_is_empty",
+  "url": "https://api.appcenter.ms/v0.1/user",
+  "method": "patch",
+  "headers": {
+    "accept": "application/json",
+    "content-type": "application/json",
+    "X-API-Token": "b12ca08737df843fee725204a28154c57da96fb6"
+  },
+  "body": {
+    "display_name": ""
+  },
+  "statusCode": 400,
+  "result": {
+    "error": {
+      "code": "BadRequest",
+      "message": "Name contains invalid character "
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "64740c5de3d0d12fcfd61b53"
+  },
+  "test": "do_not_update_display_name_when_missing",
+  "url": "https://api.appcenter.ms/v0.1/user",
+  "method": "patch",
+  "headers": {
+    "accept": "application/json",
+    "content-type": "application/json",
+    "X-API-Token": "b12ca08737df843fee725204a28154c57da96fb6"
+  },
+  "body": {},
+  "statusCode": 400,
+  "result": {
+    "error": {
+      "code": "BadRequest",
+      "message": "Missing required body parameter \"user\""
+    }
+  }
+}]

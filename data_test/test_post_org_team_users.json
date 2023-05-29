@@ -1,0 +1,92 @@
+[{
+  "_id": {
+    "$oid": "647413efe3d0d12fcfd61b57"
+  },
+  "test": "add_user_to_team",
+  "url": "https://api.appcenter.ms/v0.1/orgs/{org_name}/teams/{team_name}/users",
+  "method": "post",
+  "headers": {
+    "accept": "application/json",
+    "X-API-Token": "71b74871295b07383fb2f40a20c45e1a3045ee44"
+  },
+  "parameters": {
+    "org_name": "DevelopmentOrg",
+    "team_name": "BackendTeam"
+  },
+  "statusCode": 201,
+  "body": {
+    "user_email": "caldemarvelasquez@unicesar.edu.co"
+  },
+  "result": {
+    "email": "caldemarvelasquez@unicesar.edu.co",
+    "name": "caldemarvelasquez",
+    "display_name": "Cristian Velasquez",
+    "role": "collaborator"
+  },
+  "revert_action": {
+    "url": "https://api.appcenter.ms/v0.1/orgs/{org_name}/teams/{team_name}/users/{user_name}",
+    "method": "delete",
+    "headers": {
+      "accept": "application/json",
+      "X-API-Token": "71b74871295b07383fb2f40a20c45e1a3045ee44"
+    },
+    "parameters": {
+      "org_name": "DevelopmentOrg",
+      "team_name": "BackendTeam",
+      "user_name": "caldemarvelasquez"
+    },
+    "statusCode": 204
+  }
+},
+{
+  "_id": {
+    "$oid": "647413efe3d0d12fcfd61b58"
+  },
+  "test": "do_not_add_user_to_team_if_is_member",
+  "url": "https://api.appcenter.ms/v0.1/orgs/{org_name}/teams/{team_name}/users",
+  "method": "post",
+  "headers": {
+    "accept": "application/json",
+    "X-API-Token": "71b74871295b07383fb2f40a20c45e1a3045ee44"
+  },
+  "parameters": {
+    "org_name": "DevelopmentOrg",
+    "team_name": "BackendTeam"
+  },
+  "statusCode": 409,
+  "body": {
+    "user_email": "adejesusvilla@unicesar.edu.co"
+  },
+  "result": {
+    "error": {
+      "code": "Conflict",
+      "message": "Validation error"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "647413efe3d0d12fcfd61b59"
+  },
+  "test": "do_not_add_user_to_team_no_created",
+  "url": "https://api.appcenter.ms/v0.1/orgs/{org_name}/teams/{team_name}/users",
+  "method": "post",
+  "headers": {
+    "accept": "application/json",
+    "X-API-Token": "71b74871295b07383fb2f40a20c45e1a3045ee44"
+  },
+  "parameters": {
+    "org_name": "DevelopmentOrg",
+    "team_name": "BackendTeamRandomY46346SJH"
+  },
+  "statusCode": 404,
+  "body": {
+    "user_email": "adejesusvilla@unicesar.edu.co"
+  },
+  "result": {
+    "error": {
+      "code": "NotFound",
+      "message": "Could not find a team named \"BackendTeamRandomY46346SJH\""
+    }
+  }
+}]

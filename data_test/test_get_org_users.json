@@ -1,0 +1,78 @@
+[{
+  "_id": {
+    "$oid": "64742cb8e3d0d12fcfd61b71"
+  },
+  "test": "get_list_of_org_users",
+  "url": "https://api.appcenter.ms/v0.1/orgs/{org_name}/users",
+  "headers": {
+    "accept": "application/json",
+    "X-API-Token": "71b74871295b07383fb2f40a20c45e1a3045ee44"
+  },
+  "parameters": {
+    "org_name": "DevelopmentOrg"
+  },
+  "statusCode": 200,
+  "result": [
+    {
+      "email": "adejesusvilla@unicesar.edu.co",
+      "name": "adejesusvilla",
+      "display_name": "AGNER DE JESUS VILLA FABREGA",
+      "joined_at": "2023-05-09T21:40:01.202Z",
+      "role": "member"
+    },
+    {
+      "email": "caldemarvelasquez@unicesar.edu.co",
+      "name": "caldemarvelasquez",
+      "display_name": "Cristian Velasquez",
+      "joined_at": "2023-05-13T02:19:17.460Z",
+      "role": "member"
+    },
+    {
+      "email": "accms9587@outlook.com",
+      "name": "accms9587",
+      "display_name": "Jesus Camacho",
+      "joined_at": "2023-05-09T21:36:33.143Z",
+      "role": "admin"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "64742cb8e3d0d12fcfd61b72"
+  },
+  "test": "do_not_return_users_list_of_not_found_org",
+  "url": "https://api.appcenter.ms/v0.1/orgs/{org_name}/users",
+  "headers": {
+    "accept": "application/json",
+    "X-API-Token": "71b74871295b07383fb2f40a20c45e1a3045ee44"
+  },
+  "parameters": {
+    "org_name": "RandomOrg_"
+  },
+  "statusCode": 404,
+  "result": {
+    "message": "Not found. Correlation ID: [a-f\\d]{8}-(?:[a-f\\d]{4}-){3}[a-f\\d]{12}",
+    "statusCode": 404,
+    "code": "Not Found"
+  }
+},
+{
+  "_id": {
+    "$oid": "64742cb8e3d0d12fcfd61b73"
+  },
+  "test": "do_not_return_org_users_list_with_read_only_token",
+  "url": "https://api.appcenter.ms/v0.1/orgs/{org_name}/users",
+  "headers": {
+    "accept": "application/json",
+    "X-API-Token": "a55dd8746ffece3613e6c907a15e6b72a0a2e497"
+  },
+  "parameters": {
+    "org_name": "DevelopmentOrg"
+  },
+  "statusCode": 403,
+  "result": {
+    "message": "Forbidden",
+    "statusCode": 403,
+    "code": "Forbidden"
+  }
+}]
