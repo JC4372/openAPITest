@@ -7,3 +7,5 @@ Los datos de prueba se extraen de una base de datos de MongoDB, la cual cuenta c
 
 Las cuales contiene los datos para cada una de las respectivas pruebas
 En esta carpeta se encuentran unos archivos .json, que contienen los datos que están contenidos en esas colecciones.
+
+Ajuste prueba para Integración con Jenkins
