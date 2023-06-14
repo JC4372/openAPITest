@@ -12,7 +12,7 @@ from pymongo import MongoClient
 
 from . import tokens
 
-connection_string = "mongodb://root:mongo123*@localhost:27017/?authMechanism=DEFAULT"
+connection_string = "mongodb://root:mongo123*@mongodb:27017/?authMechanism=DEFAULT"
 client = MongoClient(connection_string)
 db = client.get_database("openAPITestDB")
 collection = db.get_collection("test_delete_user_of_team")
