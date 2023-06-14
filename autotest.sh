@@ -1,1 +1,1 @@
-pytest --html=report.html
+pytest --html=report.html --continue-on-collection-errors
