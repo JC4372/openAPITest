@@ -1,1 +1,1 @@
-pytest --html=report.html --continue-on-collection-errors
+pytest --html=report.html > /dev/null 2>&1
