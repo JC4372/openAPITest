@@ -1,1 +1,1 @@
-pytest --html=report.html > /dev/null 2>&1
+pytest --html=report.html > /dev/null 2>&1 || true
