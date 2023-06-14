@@ -3,9 +3,10 @@
 import json
 import pytest
 import requests
+import os
 from pymongo import MongoClient
 
-connection_string = "mongodb://root:mongo123*@mongodb:27017/?authMechanism=DEFAULT"
+connection_string = os.environ.get('MONGO_CONNECTION_STRING')
 client = MongoClient(connection_string)
 db = client.get_database("openAPITestDB")
 collection = db.get_collection("test_patch_user")
