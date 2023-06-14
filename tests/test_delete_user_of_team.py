@@ -47,7 +47,7 @@ def remove_user_from_team(test_data):
     url = test_data["url"].format_map(parameters)
     # Act
     del_response = requests.delete(url, headers=test_data["headers"])
-    resp_data = None if del_response.content is b'' else json.loads(del_response.content)
+    resp_data = None if del_response.content == b'' else json.loads(del_response.content)
     # Assert
     # verify status code
     assert del_response.status_code == test_data["statusCode"]
