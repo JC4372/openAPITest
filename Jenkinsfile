@@ -8,11 +8,6 @@ pipeline {
 
     stages {
 
-        stage('Clone repository') {
-            steps {
-                git 'https://github.com/JC4372/openAPITest.git'
-            }
-        }
         stage('Sonarqube Analysis') {
             steps {
                 withSonarQubeEnv("sonarQubeServer") {
