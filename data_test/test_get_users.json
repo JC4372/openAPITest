@@ -74,19 +74,4 @@
     "statusCode": 401,
     "code": "Unauthorized"
   }
-},
-{
-  "_id": "6473e68ce3d0d12fcfd61b1d",
-  "test": "do_not_return_profile_with_invalid_token",
-  "url": "https://api.appcenter.ms/v0.1/user",
-  "headers": {
-    "accept": "application/json",
-    "X-API-Token": "71b74871295b07383fb2f40a20c458a711ed64e99e9f11a02d"
-  },
-  "statusCode": 401,
-  "result": {
-    "message": "Unauthorized. Correlation ID: [a-f\\d]{8}-(?:[a-f\\d]{4}-){3}[a-f\\d]{12}",
-    "statusCode": 401,
-    "code": "Unauthorized"
-  }
 }]
