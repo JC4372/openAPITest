@@ -8,7 +8,7 @@
     "accept": "application/json",
     "X-API-Token": "71b74871295b07383fb2f40a20c45e1a3045ee44"
   },
-  "statusCode": 200,
+  "statusCode": 201,
   "result": {
     "id": "2afb883f-48db-4c26-8248-a88bebf3ba38",
     "display_name": "Jesus Camacho",
